@@ -1,0 +1,70 @@
+Answers -
+    0.  BMP - 16.7 (4.3B max)
+        GIF - 256 colors (255 visible + 1 transparent)
+        JPEG - 16.7M
+        PNG - 16.7M ( but some sourses say upto 256T (281,474,976,710,656 colors max))
+    1.  GIF
+    2.  With lossless compression, 
+        every single bit of data that was originally in the file 
+        remains after the file is uncompressed. 
+        All of the information is completely restored. 
+    3.  JPEG
+    4.  First, the system modifies the filename’s first
+        character in the file’s directory entry to signal that the file
+        has been deleted and that the directory entry can be recycled.
+        Second, the system moves all of the file’s FAT clusters
+        to the hard drive’s list of free clusters. The actual file
+        data is never touched. 
+    5.  Overwrite the data with other data so that the
+        original data cannot be recovered. 
+    6.  It is a header file in the C standard library
+        to allow programmers to write more portable code by providing a set of typedefs 
+        that specify exact-width integer types, together with the defined minimum and maximum allowable values 
+        for each type, using macros .
+    7.  Already available basic integer types were deemed insufficient, 
+        because their actual sizes are implementation defined and may vary across different systems. 
+        The mentioned in the question types are especially useful in embedded environments where hardware usually supports 
+        only several types and that support varies between different environments - they set the exact (bits) length on integers
+    8.  BYTE - 1
+        DWORD - 4
+        LONG - 4
+        WORD - 2
+    9.  The first 2 bytes of the BMP file format are the character "B" then the character "M" in ASCII encoding.
+    10. biSize - the number of bytes required by the structure (BITMAPINFOHEADER - a fixed value),
+        bfSize - the size, in bytes, of the bitmap file (image + header).
+    11. If biHeight is negative, the bitmap is a top-down DIB and its origin is the upper-left corner.
+    12. biBitCount
+    13. It is possible you open more files than your OS allows. 
+        It means that the file might not exist or some permission error occurred 
+        while accessing a file such as "Read-Only" or "Write-Protected", 
+        so in those cases fopen will return 0.
+    14. It specifies how many elements we want to "fread" at a time, and we're
+        reading only 1 struct in this case.
+    15. 3 
+    16. The  fseek()  function sets the file position indicator for the stream pointed to by stream.  The new position, measured in
+        bytes, is obtained by adding offset bytes to the position specified by: SEEK_SET, SEEK_CUR,  or
+        SEEK_END, the offset is relative to the start of the file, the current position indicator, or end-of-file, respectively.
+    17. SEEK_CUR - the current position indicator, see answer 16.
+    18. Rick Astley
+
+Questions - 
+    0. How many different colors does each format support?
+    1. Which of the formats supports animation?
+    2. What’s the difference between lossy and lossless compression?
+    3. Which of these formats is lossy-compressed?
+    4. What happens, technically speaking, when a file is deleted on a FAT file system?
+    5. What can someone like you do to ensure (with high probability) that files you delete cannot be recovered?
+    6. What’s stdint.h?
+    7. What’s the point of using uint8_t, uint32_t, int32_t, and uint16_t in a program?
+    8. How many bytes is a BYTE, a DWORD, a LONG, and a WORD, respectively?
+    9. What (in ASCII, decimal, or hexadecimal) must the first two bytes of any BMP file be? 
+       (Leading bytes used to identify file formats (with high probability) are generally called "magic numbers.)"
+    10. What’s the difference between bfSize and biSize?
+    11. What does it mean if biHeight is negative?
+    12. What field in BITMAPINFOHEADER specifies the BMP’s color depth (i.e., bits per pixel)?
+    13. Why might fopen return NULL in copy.c:37?
+    14. Why is the third argument to fread always 1 in our code?
+    15. What value does copy.c:70 assign padding if bi.biWidth is 3?
+    16. What does fseek do?
+    17. What is SEEK_CUR?
+    18. Whodunit?

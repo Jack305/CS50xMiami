@@ -4,7 +4,7 @@
  * Computer Science 50
  * Problem Set 4q
  *
- * Copies a BMP piece by piece, just because.
+ * Resizes the original BMP piece by piece, each pixel in the infile has a different color in outfile.
  * 
  * Modified by Jack (Evgeny NAgimov) 02/2017
  */

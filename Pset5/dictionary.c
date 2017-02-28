@@ -32,7 +32,6 @@ struct trie* buffer = NULL;
 // words counter
 unsigned int wordCount = 0;
 
-
 /**
  * Returns true if word is in dictionary else false.
  */
@@ -42,13 +41,14 @@ bool check(const char* word)
     trie* buffer = root; 
     int length = strlen(word);
     
+    // iterates chars in string
     for (int i = 0; i < length; i++)
     {
-        //word[i] = tolower(word[i]);
+        //index for the char in trie, including apostraph
         int index;
         tolower(word[i]) == 39 ? index = 26 : (index = tolower(word[i]) - 'a');
         
-        // moves to a next char if it exist
+        // moves to a next char if  found current one
         if (buffer->child[index] != NULL)
         {
             buffer = buffer->child[index];
@@ -89,12 +89,11 @@ bool load(const char* dictionary)
     // string keeps current word to upload
     char wordDict[LENGTH+1];
     
-    // allocating memory for root and buffer;
+    // allocating memory for root
     root = calloc(1, sizeof(trie));
-    trie* buffer = root;
     
     // checks if there is enough memory for new trie
-    if (buffer == NULL)
+    if (root == NULL)
     {
         printf("Not enough memory to create new trie!\n");
         return false;
@@ -104,7 +103,7 @@ bool load(const char* dictionary)
     while (fscanf(dict, "%s", wordDict) != EOF )
     {
         // reset the indexes to root
-        buffer = root;  
+        trie* buffer = root;  
         
         int length = strlen(wordDict);
         for (int i = 0; i < length; i++)

@@ -18,8 +18,8 @@ var markers = [];
 // info window
 var info = new google.maps.InfoWindow();
 
-// set content for info window: empty string
-var c = "<span id='iw'><h5>LOCAL NEWS</h5></span>";
+// city name for info window
+var cityName;
 
 // execute when the DOM is fully loaded
 $(function() {
@@ -85,6 +85,7 @@ function addMarker(place)
     // creates marker with label
     var marker = new MarkerWithLabel({
         position: myLatlng,
+        //label: "*",
         map: map,
         labelContent: place.place_name + ", " + place.admin_code1,
         labelAnchor: new google.maps.Point(30, 0),
@@ -96,6 +97,11 @@ function addMarker(place)
         // composes the UList with articles
         $.getJSON("articles.php", "geo=" + place.place_name)
             .done(function (article){
+            
+            cityName = place.place_name;
+            
+            // set content for info window: empty string
+            var c =  "<span id='iw'><h5>LOCAL NEWS - " + cityName + "</h5></span>";
                     
             // iterates through articles
             $.each(article, function(key, value){
@@ -104,9 +110,6 @@ function addMarker(place)
             
             // composes the <div> for info window and shows it
             showInfo(marker, c); 
-        
-            // resets the content to empty string
-            c = "<span id='iw'><h5>LOCAL NEWS</h5></span>";
         });
     });
   
@@ -234,7 +237,7 @@ function showInfo(marker, content)
 {
     
     // if now articles available shows the message
-    if (content === "<span id='iw'><h5>LOCAL NEWS</h5></span>")
+    if (content === "<span id='iw'><h5>LOCAL NEWS - " + cityName + "</h5></span>")
     {
         content = "<span id='iw'><h5>Slow day. Huh. No news. :(</h5></span>"
     }
